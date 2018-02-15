@@ -236,13 +236,13 @@ resource "null_resource" "bootstrap" {
 
   # DCOS ip detect script
   provisioner "file" {
-   source = "${var.ip-detect["gcp"]}"
+   source = "${path.module}/${var.ip-detect["gcp"]}"
    destination = "/tmp/ip-detect"
   }
 
   # Generate and upload bootstrap script to node
   provisioner "file" {
-    content     = "${module.dcos-bootstrap.script}"
+    content     = "${path.module}/${module.dcos-bootstrap.script}"
     destination = "run.sh"
   }
 
